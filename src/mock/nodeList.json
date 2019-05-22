@@ -1,0 +1,11 @@
+[
+  {
+    "name": "文本",
+    "type": "cell",
+    "props": {
+      "labelText": "价格",
+      "value": "100"
+    },
+    "style": {}
+  }
+]
