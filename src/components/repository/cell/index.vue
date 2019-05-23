@@ -31,4 +31,7 @@ export default {
 </script>
 
 <style scoped>
+.cell{
+  line-height: 1;
+}
 </style>
