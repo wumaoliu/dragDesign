@@ -4,8 +4,13 @@
     "type": "cell",
     "props": {
       "labelText": "价格",
+      "separation": "：",
       "value": "100"
     },
-    "style": {}
+    "style": {
+      "top": "100px",
+      "left": "100px",
+      "fontSize": "12px"
+    }
   }
 ]

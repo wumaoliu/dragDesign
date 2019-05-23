@@ -2,15 +2,15 @@
 import Cell from './cell'
 
 // 引入配置
-import configForText from './cell/config'
+import configForCell from './cell/config'
 
 const components = {
   cell: Cell
 }
 
-const configs = [
-  configForText
-]
+const configs = {
+  cell: configForCell
+}
 
 export {
   components,

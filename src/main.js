@@ -7,7 +7,7 @@ import router from './router'
 
 import 'element-ui/lib/theme-chalk/index.css'
 
-Vue.use(elementUI)
+Vue.use(elementUI, {size: 'mini'})
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

@@ -25,6 +25,7 @@ export default {
     handleDrag (ev) {
       // TODO
       ev.dataTransfer.setData('type', 'cell')
+      ev.dataTransfer.setData('behavior', 'createNode')
     }
   }
 }

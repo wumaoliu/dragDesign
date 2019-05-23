@@ -32,7 +32,9 @@ class RenderDom {
     //   }
     //   return component
     // })
-    return nodeList.map(node => {
+    return nodeList.map((node, index) => {
+      // 配置节点index
+      node.$index = index
       let {type, props, style} = node
       let result
       let component = this.$createElement(
@@ -42,8 +44,17 @@ class RenderDom {
           style
         }
       )
+      // 设计态坐标位置绑定至wrapper
       if (this.state === 'design') {
         result = this.$createElement(wrapper, {
+          props: {
+            type,
+            index
+          },
+          style: {
+            top: style.top || 0,
+            left: style.left || 0
+          },
           scopedSlots: {
             default: () => component
           }

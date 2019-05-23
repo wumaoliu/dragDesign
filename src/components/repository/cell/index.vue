@@ -19,10 +19,13 @@ export default {
       default: '：'
     }
   },
-  data () {
-    return {
-      content: `${this.labelText}${this.separation}${this.value}`
+  computed: {
+    content () {
+      return `${this.labelText}${this.separation}${this.value}`
     }
+  },
+  data () {
+    return {}
   }
 }
 </script>
