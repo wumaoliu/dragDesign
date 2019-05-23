@@ -23,7 +23,23 @@ export default {
       },
       renderDom.render(this.nodeList)
     )
-    return mainViewer
+    let topBar = h(
+      'div',
+      {
+        class: {
+          'top-bar': this.state === 'design'
+        }
+      }
+    )
+    return h(
+      'div',
+      {
+        class: {
+          'side-bar': this.state === 'design'
+        }
+      },
+      [topBar, mainViewer]
+    )
   },
   props: {
     state: {
@@ -114,11 +130,26 @@ export default {
 <style scoped>
 .main-viewer{
   width: 100%;
-  margin-top: 20px;
   height: 600px;
-  border: 1px solid #cccccc;
-  border-radius: 3px;
   overflow: hidden;
   position: relative;
+}
+.top-bar{
+  position: relative;
+  height: 18px;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAASCAMAAAAuTX21AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAlQTFRFMzMzAAAA////BqjYlAAAACNJREFUeNpiYCAdMDKRCka1jGoBA2JZZGshiaCXFpIBQIABAAplBkCmQpujAAAAAElFTkSuQmCC) repeat-x;/*./image/ruler_h.png*/
+  background-position-x: -1px;
+}
+.side-bar{
+  width: 749px;
+  height: 517px;
+  position: relative;
+  margin-top: 20px;
+  border: 1px solid #000000;
+  border-top: none;
+  border-left: none;
+  padding-left: 18px;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAyCAMAAABmvHtTAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAlQTFRFMzMzAAAA////BqjYlAAAACBJREFUeNpiYGBEBwwMTGiAakI0NX7U9aOuHyGuBwgwAH6bBkAR6jkzAAAAAElFTkSuQmCC) repeat-y; /*./image/ruler_v.png*/
+  background-position-y: 17px;
 }
 </style>

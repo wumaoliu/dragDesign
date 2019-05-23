@@ -49,7 +49,9 @@ class RenderDom {
         result = this.$createElement(wrapper, {
           props: {
             type,
-            index
+            index,
+            positionX: style.left || 0,
+            positionY: style.top || 0
           },
           style: {
             top: style.top || 0,
