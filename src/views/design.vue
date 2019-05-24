@@ -1,7 +1,9 @@
 <template>
-  <div class="test">
+  <div class="design">
     <component-banner></component-banner>
-    <component-viewer></component-viewer>
+    <coordinate>
+      <component-viewer></component-viewer>
+    </coordinate>
     <component-config></component-config>
   </div>
 </template>
@@ -10,21 +12,22 @@
 import componentBanner from '@/components/componentBanner'
 import componentViewer from '@/components/componentViewer'
 import componentConfig from '@/components/componentConfig'
+import coordinate from '@/components/coordinate'
 
 export default {
   name: 'design',
   components: {
     componentBanner,
     componentViewer,
-    componentConfig
+    componentConfig,
+    coordinate
   }
 }
 </script>
 
 <style scoped>
-.test{
-  position: relative;
-  padding: 20px;
-  margin: 20px
+.design{
+  display: flex;
+  justify-content: space-around;
 }
 </style>

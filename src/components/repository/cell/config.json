@@ -1,26 +1,37 @@
 {
-  "label": "文本",
+  "label": "标签",
   "type": "cell",
   "props": [
     {
-      "key": "labelText",
-      "label": "Label",
+      "key": "label",
+      "label": "标签文本",
       "type": "input",
       "init": "标签"
     },
     {
-      "key": "separation",
-      "label": "Sep",
-      "type": "input",
-      "init": "："
+      "key": "labelSize",
+      "label": "标签尺寸",
+      "type": "number",
+      "init": 5
+    },
+    {
+      "key": "valueSize",
+      "label": "值尺寸",
+      "type": "number",
+      "init": 5
     }
   ],
-  "style": [
+  "style": [],
+  "coordinate": [
     {
-      "key": "fontSize",
-      "label": "Size",
-      "type": "input",
-      "init": "20px"
+      "key": "x",
+      "label": "水平坐标",
+      "type": "number"
+    },
+    {
+      "key": "y",
+      "label": "垂直坐标",
+      "type": "number"
     }
   ]
 }

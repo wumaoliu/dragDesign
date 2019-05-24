@@ -1,121 +1,107 @@
 <script>
 import {
-  Input
+  Input,
+  InputNumber
 } from 'element-ui'
 import {configs} from './repository'
 import EventBus from '@/utils/eventBus'
 
 const components = {
-  input: Input
+  input: Input,
+  number: InputNumber
+}
+
+const renderCollapseItem = (collapseItem, vm) => {
+  let h = vm.$createElement
+  let key = Object.keys(collapseItem)[0]
+  let title = Object.values(collapseItem)[0]
+  if (!vm[`${key}Options`].length) return null
+  let form = h(
+    'el-form',
+    {
+      props: {
+        inline: true,
+        labelWidth: '100px',
+        model: vm[`${key}Model`]
+      }
+    },
+    vm[`${key}Options`].map(item => h(
+      'el-form-item',
+      {
+        props: {
+          label: item.label,
+          prop: item.key
+        }
+      },
+      [
+        h(
+          components[item.type],
+          {
+            props: {
+              value: vm[`${key}Model`][item.key]
+            },
+            on: {
+              input: (val) => {
+                vm[`${key}Model`][item.key] = val
+              }
+            }
+          }
+        )
+      ]
+    ))
+  )
+  return h(
+    'el-collapse-item',
+    {
+      props: {
+        title
+      }
+    },
+    [form]
+  )
 }
 
 export default {
   name: 'componentConfig',
   render (h) {
-    let propsPane = h(
-      'el-form',
-      {
-        props: {
-          inline: true,
-          labelWidth: '100px',
-          model: this.propsModel
-        }
-      },
-      this.propOptions.map(item => h(
-        'el-form-item',
-        {
-          props: {
-            label: item.label,
-            prop: item.key
-          }
-        },
-        [
-          h(
-            components[item.type],
-            {
-              props: {
-                value: this.propsModel[item.key]
-              },
-              on: {
-                input: (val) => {
-                  this.propsModel[item.key] = val
-                }
-              }
-            }
-          )
-        ]
-      ))
-    )
-    let stylePane = h(
-      'el-form',
-      {
-        props: {
-          inline: true,
-          labelWidth: '100px',
-          model: this.styleModel
-        }
-      },
-      this.styleOptions.map(item => h(
-        'el-form-item',
-        {
-          props: {
-            label: item.label,
-            prop: item.key
-          }
-        },
-        [
-          h(
-            components[item.type],
-            {
-              props: {
-                value: this.styleModel[item.key]
-              },
-              on: {
-                input: (val) => {
-                  this.styleModel[item.key] = val
-                }
-              }
-            }
-          )
-        ]
-      ))
-    )
-    let tab = h(
-      'el-tabs',
+    let vm = this
+    let collapseItems = [
+      {prop: '属性'},
+      {style: '样式'},
+      {coordinate: '坐标'}
+    ]
+    collapseItems = collapseItems.map(item => renderCollapseItem(item, vm))
+    return h(
+      'el-collapse',
       {
         class: {
-          tab: true
+          config: true
         }
       },
-      [propsPane, stylePane].map((item, idx) => h(
-        'el-tab-pane',
-        {
-          props: {
-            label: idx ? '样式' : '属性'
-          }
-        },
-        [item]
-      ))
+      collapseItems
     )
-    return tab
   },
   data () {
     return {
       index: '',
       propOptions: [],
       styleOptions: [],
-      propsModel: {},
-      styleModel: {}
+      coordinateOptions: [],
+      propModel: {},
+      styleModel: {},
+      coordinateModel: {}
     }
   },
   methods: {
     handleSelectNode (index, node) {
       if (node) {
         this.index = node.$index
-        this.propsModel = node.props
+        this.propModel = node.props
         this.styleModel = node.style
+        this.coordinateModel = node.coordinate
         this.propOptions = configs[node.type].props
         this.styleOptions = configs[node.type].style
+        this.coordinateOptions = configs[node.type].coordinate
       }
     }
   },
@@ -126,7 +112,7 @@ export default {
 </script>
 
 <style scoped>
-.tab{
-  width: 500px;
+.config{
+  width: 300px;
 }
 </style>

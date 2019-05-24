@@ -1,5 +1,6 @@
 // 渲染类
 import wrapper from '@/components/wrapper'
+import {mm2px} from './utils'
 
 class RenderDom {
   /**
@@ -35,7 +36,13 @@ class RenderDom {
     return nodeList.map((node, index) => {
       // 配置节点index
       node.$index = index
-      let {type, props, style} = node
+      let {type, props, style, coordinate} = node
+      // 坐标位置毫米转px
+      style = {
+        ...style,
+        top: mm2px(coordinate.y) + 'px',
+        left: mm2px(coordinate.x) + 'px'
+      }
       let result
       let component = this.$createElement(
         type,
@@ -50,12 +57,8 @@ class RenderDom {
           props: {
             type,
             index,
-            positionX: style.left || 0,
-            positionY: style.top || 0
-          },
-          style: {
-            top: style.top || 0,
-            left: style.left || 0
+            positionX: style.left,
+            positionY: style.top
           },
           scopedSlots: {
             default: () => component

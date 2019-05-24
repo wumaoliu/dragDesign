@@ -2,6 +2,7 @@
 import {components, configs} from './repository'
 import RenderDom from '@/utils/renderDom'
 import EventBus from '@/utils/eventBus'
+import {px2mm} from '@/utils/utils'
 
 let renderDom
 
@@ -23,23 +24,7 @@ export default {
       },
       renderDom.render(this.nodeList)
     )
-    let topBar = h(
-      'div',
-      {
-        class: {
-          'top-bar': this.state === 'design'
-        }
-      }
-    )
-    return h(
-      'div',
-      {
-        class: {
-          'side-bar': this.state === 'design'
-        }
-      },
-      [topBar, mainViewer]
-    )
+    return mainViewer
   },
   props: {
     state: {
@@ -65,9 +50,9 @@ export default {
       let behavior = ev.dataTransfer.getData('behavior')
       let offsetInfo = {x: 0, y: 0}
       if (behavior === 'moveNode') offsetInfo = JSON.parse(ev.dataTransfer.getData('offsetInfo'))
-      let positionStyle = {
-        top: `${ev.clientY - top - offsetInfo.y}px`,
-        left: `${ev.clientX - left - offsetInfo.x}px`
+      let coordinate = {
+        x: px2mm(ev.clientX - left - offsetInfo.x),
+        y: px2mm(ev.clientY - top - offsetInfo.y)
       }
       if (behavior === 'createNode') {
         let initProps = {}
@@ -82,13 +67,13 @@ export default {
           type: type,
           props: initProps,
           style: {
-            ...initStyle,
-            ...positionStyle
-          }
+            ...initStyle
+          },
+          coordinate
         }
         this.handleCreateNode(newNode)
       } else {
-        this.handleUpdateNode(index, 'style', positionStyle)
+        this.handleUpdateNode(index, 'coordinate', coordinate)
       }
     },
     handleCreateNode (node) {
@@ -130,26 +115,8 @@ export default {
 <style scoped>
 .main-viewer{
   width: 100%;
-  height: 600px;
+  height: 100%;
   overflow: hidden;
   position: relative;
-}
-.top-bar{
-  position: relative;
-  height: 18px;
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAASCAMAAAAuTX21AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAlQTFRFMzMzAAAA////BqjYlAAAACNJREFUeNpiYCAdMDKRCka1jGoBA2JZZGshiaCXFpIBQIABAAplBkCmQpujAAAAAElFTkSuQmCC) repeat-x;/*./image/ruler_h.png*/
-  background-position-x: -1px;
-}
-.side-bar{
-  width: 749px;
-  height: 517px;
-  position: relative;
-  margin-top: 20px;
-  border: 1px solid #000000;
-  border-top: none;
-  border-left: none;
-  padding-left: 18px;
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAyCAMAAABmvHtTAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAlQTFRFMzMzAAAA////BqjYlAAAACBJREFUeNpiYGBEBwwMTGiAakI0NX7U9aOuHyGuBwgwAH6bBkAR6jkzAAAAAElFTkSuQmCC) repeat-y; /*./image/ruler_v.png*/
-  background-position-y: 17px;
 }
 </style>

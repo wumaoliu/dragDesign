@@ -2,6 +2,10 @@
   <div
     class="wrapper"
     :class="{active}"
+    :style="{
+      top: positionY,
+      left: positionX
+    }"
     draggable="true"
     @dragstart="handleDrag"
     @click="handleClick"
@@ -48,9 +52,8 @@ export default {
     handleDrag (ev) {
       let {top, left} = this.$el.getBoundingClientRect()
       let offsetInfo = {
-        // 补全top、left方向18px标尺
-        x: ev.clientX - left + 18,
-        y: ev.clientY - top + 18
+        x: ev.clientX - left,
+        y: ev.clientY - top
       }
       ev.dataTransfer.setData('type', this.type)
       ev.dataTransfer.setData('index', this.index)

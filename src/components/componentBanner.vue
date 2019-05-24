@@ -1,13 +1,13 @@
 <template>
   <div>
-    <el-tag
+    <div
+      class="item"
       v-for="item in configs"
       v-text="item.label"
       :key="item.type"
       draggable="true"
-      @dragstart.native="handleDrag"
-    >
-    </el-tag>
+      @dragstart="handleDrag"
+    ></div>
   </div>
 </template>
 
@@ -30,3 +30,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.item{
+  border: 1px solid #EBEEF5;
+  padding: 5px 10px;
+  border-radius: 3px;
+}
+</style>

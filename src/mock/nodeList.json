@@ -3,14 +3,15 @@
     "name": "文本",
     "type": "cell",
     "props": {
-      "labelText": "价格",
-      "separation": "：",
-      "value": "100"
+      "label": "价格",
+      "value": "100",
+      "labelSize": 6,
+      "valueSize": 8
     },
-    "style": {
-      "top": "100px",
-      "left": "100px",
-      "fontSize": "12px"
+    "style": {},
+    "coordinate": {
+      "x": 20,
+      "y": 30
     }
   }
 ]
