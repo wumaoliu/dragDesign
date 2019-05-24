@@ -6,7 +6,7 @@
       v-text="item.label"
       :key="item.type"
       draggable="true"
-      @dragstart="handleDrag"
+      @dragstart="(ev) => {handleDrag(ev, item)}"
     ></div>
   </div>
 </template>
@@ -22,10 +22,11 @@ export default {
     }
   },
   methods: {
-    handleDrag (ev) {
-      // TODO
-      ev.dataTransfer.setData('type', 'cell')
+    handleDrag (ev, item) {
+      ev.dataTransfer.setData('type', item.type)
       ev.dataTransfer.setData('behavior', 'createNode')
+      // 定义拖动图片
+      // ev.dataTransfer.setDragImage(imageObj, x, y)
     }
   }
 }

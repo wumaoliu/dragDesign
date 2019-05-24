@@ -3,7 +3,7 @@
     class="coordinate"
     :style="coordinateStyle"
   >
-    <div class="y-axis">
+    <div class="y-axis" v-show="isDesign">
       <span
         v-for="(item, idx) in markY"
         v-text="item"
@@ -11,7 +11,7 @@
       ></span>
     </div>
     <div class="right-wrapper">
-      <div class="x-axis">
+      <div class="x-axis" v-show="isDesign">
         <span
           v-for="(item, idx) in markX"
           v-text="item"
@@ -37,6 +37,10 @@ export default {
     limitY: {
       type: Number,
       default: 100
+    },
+    isDesign: {
+      type: Boolean,
+      default: true
     }
   },
   data () {
@@ -44,8 +48,10 @@ export default {
       markX: this.initMark(this.limitX),
       markY: this.initMark(this.limitY),
       coordinateStyle: {
-        width: `${this.limitX * 5 + 17}px`,
-        height: `${this.limitY * 5 + 17}px`
+        width: `${this.limitX * 5 + (this.isDesign ? 17 : 0)}px`,
+        height: `${this.limitY * 5 + (this.isDesign ? 17 : 0)}px`,
+        borderTopWidth: this.isDesign ? 0 : '1px',
+        borderLeftWidth: this.isDesign ? 0 : '1px'
       }
     }
   },
@@ -63,8 +69,6 @@ export default {
   flex-direction: row;
   position: relative;
   border: 1px solid #000000;
-  border-top: none;
-  border-left: none;
   overflow: hidden;
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Chrome/Safari/Opera */

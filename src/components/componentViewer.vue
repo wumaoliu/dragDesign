@@ -10,7 +10,7 @@ export default {
   name: 'componentViewer',
   components,
   render (h) {
-    if (!renderDom) renderDom = new RenderDom(h, this.state)
+    if (!renderDom) renderDom = new RenderDom(h, this.isDesign)
     let mainViewer = h(
       'div',
       {
@@ -27,9 +27,9 @@ export default {
     return mainViewer
   },
   props: {
-    state: {
-      type: String,
-      default: 'design'
+    isDesign: {
+      type: Boolean,
+      default: true
     }
   },
   data () {
@@ -44,6 +44,7 @@ export default {
       ev.preventDefault()
     },
     handleDrop (ev) {
+      if (!this.isDesign) return
       let {top, left} = this.$el.getBoundingClientRect()
       let type = ev.dataTransfer.getData('type')
       let index = ev.dataTransfer.getData('index')

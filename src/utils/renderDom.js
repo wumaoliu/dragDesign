@@ -6,11 +6,11 @@ class RenderDom {
   /**
    * 构造器
    * @param {Function} h
-   * @param {String} state
+   * @param {Boolean} isDesign
    */
-  constructor (h, state) {
+  constructor (h, isDesign) {
     this.$createElement = h
-    this.state = state
+    this.isDesign = isDesign
   }
 
   /**
@@ -18,30 +18,17 @@ class RenderDom {
    * @param {Array} nodeTree
    */
   render (nodeList) {
-    // return nodeTree.map(node => {
-    //   let {type, props, style, children} = node
-    //   let component = this.$createElement(
-    //     type,
-    //     {
-    //       props,
-    //       style
-    //     },
-    //     children.map(child => this.$createElement(child))
-    //   )
-    //   if (this.state === 'design') {
-    //     component = this.$createElement(wrapper, {}, component)
-    //   }
-    //   return component
-    // })
     return nodeList.map((node, index) => {
       // 配置节点index
       node.$index = index
       let {type, props, style, coordinate} = node
-      // 坐标位置毫米转px
+      // 毫米转px
       style = {
         ...style,
+        ...(this.isDesign ? {} : {position: 'absolute'}),
         top: mm2px(coordinate.y) + 'px',
-        left: mm2px(coordinate.x) + 'px'
+        left: mm2px(coordinate.x) + 'px',
+        fontSize: mm2px(style.fontSize || 1) + 'px'
       }
       let result
       let component = this.$createElement(
@@ -52,7 +39,7 @@ class RenderDom {
         }
       )
       // 设计态坐标位置绑定至wrapper
-      if (this.state === 'design') {
+      if (this.isDesign) {
         result = this.$createElement(wrapper, {
           props: {
             type,

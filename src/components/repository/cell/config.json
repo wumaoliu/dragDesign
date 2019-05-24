@@ -3,25 +3,20 @@
   "type": "cell",
   "props": [
     {
-      "key": "label",
-      "label": "标签文本",
+      "key": "value",
+      "label": "文本",
       "type": "input",
-      "init": "标签"
-    },
+      "init": "text"
+    }
+  ],
+  "style": [
     {
-      "key": "labelSize",
-      "label": "标签尺寸",
-      "type": "number",
-      "init": 5
-    },
-    {
-      "key": "valueSize",
-      "label": "值尺寸",
+      "key": "fontSize",
+      "label": "字体尺寸",
       "type": "number",
       "init": 5
     }
   ],
-  "style": [],
   "coordinate": [
     {
       "key": "x",

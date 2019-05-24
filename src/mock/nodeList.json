@@ -3,12 +3,11 @@
     "name": "文本",
     "type": "cell",
     "props": {
-      "label": "价格",
-      "value": "100",
-      "labelSize": 6,
-      "valueSize": 8
+      "value": "价格"
     },
-    "style": {},
+    "style": {
+      "fontSize": 6
+    },
     "coordinate": {
       "x": 20,
       "y": 30
