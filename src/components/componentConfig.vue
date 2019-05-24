@@ -13,8 +13,7 @@ const components = {
 
 const renderCollapseItem = (collapseItem, vm) => {
   let h = vm.$createElement
-  let key = Object.keys(collapseItem)[0]
-  let title = Object.values(collapseItem)[0]
+  let [key, title] = Object.entries(collapseItem)[0]
   if (!vm[`${key}Options`].length) return null
   let form = h(
     'el-form',

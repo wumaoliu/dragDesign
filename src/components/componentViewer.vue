@@ -24,6 +24,9 @@ export default {
       },
       renderDom.render(this.nodeList)
     )
+    setTimeout(() => {
+      EventBus.$emit('afterRender', this.nodeList)
+    }, 0)
     return mainViewer
   },
   props: {

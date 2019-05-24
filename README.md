@@ -1,6 +1,6 @@
 # drag-design
 
-> A Vue.js project
+> A Demo for Pagoda
 
 ## Build Setup
 

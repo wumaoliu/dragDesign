@@ -11,6 +11,7 @@ class RenderDom {
   constructor (h, isDesign) {
     this.$createElement = h
     this.isDesign = isDesign
+    this.propsNeedCalc = ['width', 'height', 'fontSize']
   }
 
   /**
@@ -23,12 +24,19 @@ class RenderDom {
       node.$index = index
       let {type, props, style, coordinate} = node
       // 毫米转px
+      // 处理须换算属性
+      let sizeObj = {}
+      Object.keys(style).map(key => {
+        if (this.propsNeedCalc.includes(key)) {
+          sizeObj[key] = mm2px(style[key] || 1) + 'px'
+        }
+      })
       style = {
         ...style,
+        ...sizeObj,
         ...(this.isDesign ? {} : {position: 'absolute'}),
         top: mm2px(coordinate.y) + 'px',
-        left: mm2px(coordinate.x) + 'px',
-        fontSize: mm2px(style.fontSize || 1) + 'px'
+        left: mm2px(coordinate.x) + 'px'
       }
       let result
       let component = this.$createElement(

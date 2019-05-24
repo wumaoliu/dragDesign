@@ -1,6 +1,5 @@
 [
   {
-    "name": "文本",
     "type": "cell",
     "props": {
       "value": "价格"
