@@ -1,0 +1,32 @@
+{
+  "label": "卡片",
+  "type": "card",
+  "props": [
+    {
+      "key": "title",
+      "label": "标题",
+      "type": "input",
+      "init": "标题"
+    },
+    {
+      "key": "content",
+      "label": "内容",
+      "type": "input",
+      "init": "内容"
+    }
+  ],
+  "style": [
+    {
+      "key": "left",
+      "label": "水平坐标（mm）",
+      "type": "number",
+      "unit": "mm"
+    },
+    {
+      "key": "top",
+      "label": "垂直坐标（mm）",
+      "type": "number",
+      "unit": "mm"
+    }
+  ]
+}

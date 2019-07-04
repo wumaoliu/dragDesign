@@ -1,0 +1,19 @@
+[
+  {
+    "name": "标签",
+    "key": "",
+    "dataSource": "preset",
+    "type": "cell",
+    "props": {
+      "value": "标签"
+    },
+    "style": {
+      "position": "absolute",
+      "left": "30mm",
+      "top": "50mm",
+      "fontSize": "5mm",
+      "fontFamily": "SimHei",
+      "color": "#CCCCCC"
+    }
+  }
+]

@@ -1,0 +1,60 @@
+{
+  "label": "标签",
+  "type": "cell",
+  "props": [
+    {
+      "key": "value",
+      "label": "文本",
+      "type": "input",
+      "init": "文本"
+    }
+  ],
+  "style": [
+    {
+      "key": "fontFamily",
+      "label": "字体",
+      "type": "select",
+      "options": [
+        {"label": "黑体","value": "SimHei"},
+        {"label": "宋体","value": "SimSun"},
+        {"label": "新宋体","value": "NSimSun"},
+        {"label": "仿宋","value": "FangSong"},
+        {"label": "楷体","value": "KaiTi"},
+        {"label": "标楷体","value": "DFKai-SB"},
+        {"label": "微软雅黑","value": "Microsoft YaHei"},
+        {"label": "微软正黑体","value": "Microsoft JhengHei"},
+        {"label": "新细明体","value": "PMingLiU"},
+        {"label": "细明体","value": "MingLiU"}
+      ],
+      "init": "SimHei"
+    },
+    {
+      "key": "fontSize",
+      "label": "字体尺寸（px）",
+      "type": "number",
+      "unit": "px",
+      "init": 16,
+      "props": {
+        "min": 12
+      }
+    },
+    {
+      "key": "color",
+      "label": "字体颜色",
+      "type": "colorPicker",
+      "init": "#000000"
+    },
+    {
+      "key": "left",
+      "label": "水平坐标（mm）",
+      "type": "number",
+      "unit": "mm"
+    },
+    {
+      "key": "top",
+      "label": "垂直坐标（mm）",
+      "type": "number",
+      "unit": "mm"
+    }
+  ]
+}
